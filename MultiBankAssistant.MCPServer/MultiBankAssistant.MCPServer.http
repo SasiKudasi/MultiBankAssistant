@@ -1,0 +1,6 @@
+@MultiBankAssistant.MCPServer_HostAddress = http://localhost:5057
+
+GET {{MultiBankAssistant.MCPServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
