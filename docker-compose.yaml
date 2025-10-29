@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - mcp-net
+  #   restart: unless-stopped
+
+  mcp-server:
+    build: ./MultiBankAssistant.MCPServer
+    container_name: mcp-server
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    # сюда прокинуть редис нрн
+    ports:
+      - "8080:8080" #пока порт открыт наружу для тестов, после поменять на expose
+    # depends_on:
+    #   - redis
+    networks:
+      - mcp-net
+    restart: unless-stopped
+
+# тут будет контейнер с ботом 
+
+networks:
+  mcp-net:
+    driver: bridge

@@ -16,7 +16,10 @@ public static class HttpClientExtensions
         builder.Services.AddHttpClient("BankB", client =>
         {
             client.BaseAddress = new Uri(settings.ABankUrl);
-            client.DefaultRequestHeaders.Add("Accept", "application/json"); 
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+        });
+        builder.Services.AddHttpClient("BankC", client =>
+
         {
             client.BaseAddress = new Uri(settings.SBankUrl);
             client.DefaultRequestHeaders.Add("Accept", "application/json"); 
