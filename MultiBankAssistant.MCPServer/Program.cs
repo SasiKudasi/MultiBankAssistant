@@ -6,7 +6,27 @@ builder.AddIntegrationSettings();
 builder.Services.AddMcpServer()
     .WithHttpTransport()
     .WithToolsFromAssembly();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+
+app.Use(async (context, next) =>
+{
+    //здесь можно логинится в банк
+    await next();
+});
+
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
@@ -14,7 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 app.MapMcp("/sse");
 
-app.MapGet("/test", () => "������, ���!");
+app.MapGet("/test", () => "ЙОУ ЙОУ!");
 
 
 app.Run();
