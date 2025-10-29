@@ -1,5 +1,0 @@
-python-dotenv
-gigachat
-langchain==0.3.23
-langchain-community==0.3.23
-langchain-core==0.3.23
